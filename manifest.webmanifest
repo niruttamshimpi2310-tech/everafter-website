@@ -1,0 +1,14 @@
+{
+  "name": "EverAfter — Birthday Invitations",
+  "short_name": "EverAfter",
+  "description": "Create and share beautiful birthday invitations.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fffaf6",
+  "theme_color": "#7c3aed",
+  "icons": [
+    {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+  ]
+}
