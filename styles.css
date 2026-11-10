@@ -29,3 +29,11 @@
 .balloon-0{left:3%;top:20%;animation-delay:-1s}.balloon-1{left:17%;top:48%;font-size:43px;animation-delay:-2.1s}.balloon-2{left:30%;top:5%;animation-delay:-.7s}.balloon-3{left:44%;top:55%;font-size:48px;animation-delay:-3s}.balloon-4{left:58%;top:15%;animation-delay:-1.6s}.balloon-5{left:73%;top:42%;font-size:46px;animation-delay:-2.7s}.balloon-6{left:88%;top:8%;animation-delay:-.4s}.balloon-7{left:8%;top:72%;font-size:38px;animation-delay:-2.5s}.balloon-8{left:25%;top:30%;font-size:50px;animation-delay:-1.8s}.balloon-9{left:39%;top:78%;font-size:39px;animation-delay:-.9s}.balloon-10{left:55%;top:68%;font-size:42px;animation-delay:-3.2s}.balloon-11{left:68%;top:2%;font-size:39px;animation-delay:-1.2s}.balloon-12{left:81%;top:72%;font-size:50px;animation-delay:-2.2s}.balloon-13{left:93%;top:50%;font-size:37px;animation-delay:-1.4s}
 @keyframes floatAcross{0%{transform:translate(0,16px) rotate(-12deg)}50%{transform:translate(10px,-18px) rotate(9deg)}100%{transform:translate(-8px,-48px) rotate(-7deg)}}
 @media(max-width:480px){.section-menu{grid-template-columns:1fr}.section-card{min-height:88px}.journey-page:has(.menu-content){min-height:620px}.journey-content h2{font-size:26px}.balloon-field{height:230px}}
+
+/* Keep the two newly requested celebration moments visible first */
+.section-card.featured-section{order:-1;border:1px solid #e9c98e;background:linear-gradient(135deg,#ffffff25,#e9c98e18);box-shadow:0 8px 22px #12091d22}
+.section-card.featured-section b{color:#f5d99e}
+.section-card.featured-section span{font-size:30px}
+.balloon-field{min-height:270px}
+.float-balloon{will-change:transform}
+@keyframes floatAcross{0%{transform:translate(0,18px) rotate(-12deg)}25%{transform:translate(22px,-12px) rotate(10deg)}50%{transform:translate(-16px,-32px) rotate(-8deg)}75%{transform:translate(18px,-15px) rotate(12deg)}100%{transform:translate(-12px,-48px) rotate(-7deg)}}
