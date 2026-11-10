@@ -83,7 +83,7 @@ function renderInvite(item){
     const photo=item.photo?'<img class="surprise-photo" src="'+item.photo+'" alt="Birthday photo">':'<div class="photo-placeholder">🎂</div>';
     const gallery=(item.gallery||[]).map(src=>'<img class="gallery-photo" src="'+src+'" alt="Memory photo">').join("");
     let body="";
-    if(page===-1)body='<p class="eyebrow">CHOOSE YOUR MOMENT</p><h2>Your birthday journey</h2><p>Tap any card to open that special moment.</p><div class="section-menu">'+pages.map((p,i)=>'<button class="section-card" type="button" data-page="'+i+'"><span>'+p[2]+'</span><b>'+p[0]+'</b><small>'+p[1]+'</small></button>').join("")+'</div>';
+    if(page===-1)body='<p class="eyebrow">CHOOSE YOUR MOMENT</p><h2>Your birthday journey</h2><p>Tap any card to open that special moment.</p><div class="section-menu">'+pages.map((p,i)=>'<button class="section-card '+(i===7||i===8?'featured-section':'')+'" type="button" data-page="'+i+'"><span>'+p[2]+'</span><b>'+p[0]+'</b><small>'+p[1]+'</small></button>').join("")+'</div>';
     if(page===0)body='<div class="page-icon">✦</div><p class="eyebrow">A LITTLE MAGIC IS WAITING</p><h2>Something special is here for you.</h2><p>Made with love. Just for you.</p>';
     if(page===1)body='<div class="page-icon">🎁</div><p class="eyebrow">YOUR SURPRISE IS READY</p><h2>Open Your Surprise</h2><p>Take a deep breath and get ready to smile.</p><button class="btn btn-primary" id="revealStar" type="button">Reveal the birthday star ✨</button>';
     if(page===2)body=photo+'<p class="eyebrow">TODAY\'S STAR</p><h2>Happy Birthday '+escapeHtml(item.name)+'! ❤️</h2>';
