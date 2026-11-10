@@ -1,14 +1,19 @@
 {
-  "name": "EverAfter — Birthday Invitations",
+  "name": "EverAfter — Premium Birthday Surprises",
   "short_name": "EverAfter",
-  "description": "Create and share beautiful birthday invitations.",
+  "description": "Create and share premium personalized birthday surprises.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fffaf6",
-  "theme_color": "#7c3aed",
+  "background_color": "#21142f",
+  "theme_color": "#21142f",
   "icons": [
-    {"src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
   ]
 }
