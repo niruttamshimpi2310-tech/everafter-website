@@ -1,56 +1,14 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#7c3aed">
-  <meta name="description" content="Create beautiful birthday invitations and celebrate every special moment with EverAfter.">
-  <title>EverAfter — Make every moment magical</title>
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="#"><span class="brand-mark">✦</span> EverAfter</a>
-    <nav><a href="#templates">Templates</a><a href="#how">How it works</a><button class="btn btn-outline" id="adminOpen">Admin</button></nav>
-  </header>
-  <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">MAKE EVERY MOMENT MAGICAL</span>
-        <h1>Invitations that feel<br><em>like a celebration.</em></h1>
-        <p>Create a beautiful birthday invitation in minutes. Personal, joyful, and ready to share with everyone you love.</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="#templates">Explore invitations <span>→</span></a><button class="btn btn-soft" id="installBtn" hidden>Install app</button></div>
-        <div class="trust"><span>✦</span> Made for memories, shared with love</div>
-      </div>
-      <div class="hero-art">
-        <div class="confetti c1">✦</div><div class="confetti c2">✧</div><div class="confetti c3">✦</div>
-        <article class="invite-card">
-          <div class="invite-top">YOU'RE INVITED</div><div class="cake">🎂</div>
-          <div class="invite-script">Birthday</div><h2>Party Time!</h2>
-          <div class="invite-line"></div><p>LET'S MAKE SOME<br>UNFORGETTABLE MEMORIES</p>
-          <div class="invite-date">SATURDAY · 6:00 PM</div>
-        </article>
-        <div class="floating-note">A little invite,<br>a lot of happiness <b>♡</b></div>
-      </div>
-    </section>
-    <section class="section" id="templates">
-      <div class="section-heading"><div><span class="eyebrow">THE INVITATION STUDIO</span><h2>Find your kind of <em>celebration</em></h2></div><p>Choose a style and make it yours.</p></div>
-      <div class="template-grid">
-        <article class="template-card"><div class="template-preview preview-pink"><span>🎀</span><small>YOU'RE INVITED</small><strong>Birthday<br>Bliss</strong><i>Let's celebrate!</i></div><h3>Birthday Bliss</h3><p>Soft, sweet and full of joy.</p><button class="text-btn create-template" data-theme="pink">Create invitation ↗</button></article>
-        <article class="template-card"><div class="template-preview preview-gold"><span>✨</span><small>A SPECIAL EVENING</small><strong>Golden<br>Moments</strong><i>Save the date</i></div><h3>Golden Moments</h3><p>Elegant for a milestone birthday.</p><button class="text-btn create-template" data-theme="gold">Create invitation ↗</button></article>
-        <article class="template-card"><div class="template-preview preview-blue"><span>🎈</span><small>LET'S PARTY</small><strong>Fun &<br>Fabulous</strong><i>Come join us!</i></div><h3>Fun & Fabulous</h3><p>Bright, bold and playful.</p><button class="text-btn create-template" data-theme="blue">Create invitation ↗</button></article>
-      </div>
-      <div class="admin-note" id="adminNotice">Invitation creation is managed by the EverAfter admin. Sign in as admin to create and publish invitations.</div>
-    </section>
-    <section class="how section" id="how"><span class="eyebrow">SIMPLE AS ONE, TWO, THREE</span><h2>From idea to <em>invited.</em></h2><div class="steps"><div><b>01</b><h3>Pick a design</h3><p>Choose a celebration style that feels right.</p></div><div><b>02</b><h3>Add the details</h3><p>Personalize the name, date, time and venue.</p></div><div><b>03</b><h3>Share the joy</h3><p>Publish your invite and share it with guests.</p></div></div></section>
-    <section class="published section" id="published" hidden><div class="section-heading"><div><span class="eyebrow">READY TO CELEBRATE</span><h2>Published <em>invitations</em></h2></div></div><div class="published-grid" id="publishedGrid"></div></section>
-  </main>
-  <footer><a class="brand" href="#"><span class="brand-mark">✦</span> EverAfter</a><span>Made with love for life's little celebrations.</span><span>© <span id="year"></span> EverAfter</span></footer>
-
-  <dialog id="adminDialog" class="modal"><form method="dialog" class="modal-head"><div><span class="eyebrow">PRIVATE STUDIO</span><h2>Admin access</h2></div><button class="close" aria-label="Close">×</button></form><div id="loginPanel"><p class="muted">Sign in to create and publish invitations.</p><label>Admin password<input id="adminPassword" type="password" placeholder="Enter admin password" autocomplete="current-password"></label><button class="btn btn-primary full" id="loginBtn" type="button">Sign in</button><p class="error" id="loginError"></p><small class="muted">Demo password: <b>admin123</b>. Change this before public use; client-side demo login is not secure.</small></div><div id="editorPanel" hidden><div class="editor-top"><p class="muted">Create a new birthday invitation</p><button class="text-btn" id="logoutBtn" type="button">Sign out</button></div><form id="inviteForm"><label>Celebrant's name<input name="name" required maxlength="45" placeholder="e.g. Anaya"></label><div class="two"><label>Date<input name="date" type="date" required></label><label>Time<input name="time" type="time" required></label></div><label>Venue<input name="venue" required maxlength="100" placeholder="Venue / address"></label><label>Birthday person photo<input name="photo" id="birthdayPhoto" type="file" accept="image/*"></label><p class="muted">Choose a clear photo. It will be resized before saving.</p><label>Personal message<textarea name="message" rows="3" maxlength="180" placeholder="Join us for a day full of smiles!"></textarea></label><label>Invitation theme<select name="theme"><option value="pink">Birthday Bliss</option><option value="gold">Golden Moments</option><option value="blue">Fun & Fabulous</option></select></label><button class="btn btn-primary full" type="submit">Publish invitation ✦</button></form><p class="success" id="publishMessage"></p><div class="admin-list" id="adminList"></div></div></dialog>
-  <dialog id="viewDialog" class="modal view-modal"><form method="dialog" class="modal-head"><div><span class="eyebrow">YOU'RE INVITED</span><h2>Your invitation</h2></div><button class="close" aria-label="Close">×</button></form><div id="invitationView"></div><button class="btn btn-primary full" id="shareInvite" type="button">Share invitation ↗</button></dialog>
-  <script src="./app.js"></script>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#21142f"><meta name="description" content="EverAfter — premium birthday surprises made with love."><title>EverAfter — A Birthday Surprise</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css"></head>
+<body class="premium-body">
+<header class="topbar premium-top"><a class="brand" href="#"><span class="brand-mark">✦</span> EverAfter</a><nav><a href="#experience">Experience</a><a href="#how">How it works</a><button class="btn btn-outline" id="adminOpen">Admin Studio</button></nav></header>
+<main>
+<section class="premium-hero"><div class="hero-copy"><span class="eyebrow">A LITTLE MAGIC, MADE PERSONAL</span><h1>Make their day<br><em>unforgettable.</em></h1><p>A beautiful birthday surprise, created with love and shared through one special link.</p><div class="hero-actions"><a class="btn btn-primary" href="#experience">Explore the experience <span>→</span></a><button class="btn btn-soft" id="installBtn" hidden>Install app</button></div><div class="trust"><span>✦</span> Eight moments. One unforgettable surprise.</div></div><div class="premium-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-gift"><span>✧</span><div>🎁</div><small>A SURPRISE FOR YOU</small></div><i class="spark s1">✦</i><i class="spark s2">✧</i><i class="spark s3">✦</i></div></section>
+<section class="section experience-section" id="experience"><div class="section-heading"><div><span class="eyebrow">THE EVERAFTER EXPERIENCE</span><h2>Eight moments of <em>magic.</em></h2></div><p>Move through a carefully designed birthday journey.</p></div><div class="experience-grid">
+<article class="experience-card"><b>01</b><span>✦</span><h3>Welcome</h3><p>A warm first impression.</p></article><article class="experience-card"><b>02</b><span>🎁</span><h3>Open Your Surprise</h3><p>The gift is waiting to be opened.</p></article><article class="experience-card"><b>03</b><span>📸</span><h3>Birthday Star</h3><p>Their photo and birthday title.</p></article><article class="experience-card"><b>04</b><span>💌</span><h3>Special Wishes</h3><p>A heartfelt personal message.</p></article><article class="experience-card"><b>05</b><span>🖼️</span><h3>Memory Gallery</h3><p>Favourite moments together.</p></article><article class="experience-card"><b>06</b><span>🎉</span><h3>Celebration</h3><p>Confetti, balloons and joy.</p></article><article class="experience-card"><b>07</b><span>🎵</span><h3>Birthday Music</h3><p>A soundtrack for the moment.</p></article><article class="experience-card"><b>08</b><span>♡</span><h3>Final Surprise</h3><p>A sweet ending to remember.</p></article></div></section>
+<section class="how section" id="how"><span class="eyebrow">MADE FOR YOUR SPECIAL PEOPLE</span><h2>One link. A whole lot of <em>love.</em></h2><div class="steps"><div><b>01</b><h3>Create</h3><p>Admin adds a name, photos and a personal wish.</p></div><div><b>02</b><h3>Personalize</h3><p>Choose the look, memories and birthday music.</p></div><div><b>03</b><h3>Share</h3><p>Send a private surprise link to the birthday person.</p></div></div><p class="admin-note">Admin-only creation · Mobile-friendly · Personal share links</p></section>
+<section class="published section" id="published" hidden><div class="section-heading"><div><span class="eyebrow">YOUR CREATIONS</span><h2>Birthday <em>surprises</em></h2></div></div><div class="published-grid" id="publishedGrid"></div></section>
+</main><footer><a class="brand" href="#"><span class="brand-mark">✦</span> EverAfter</a><span>Made with love for life's little celebrations.</span><span>© <span id="year"></span> EverAfter</span></footer>
+<dialog id="adminDialog" class="modal"><form method="dialog" class="modal-head"><div><span class="eyebrow">PRIVATE CREATOR STUDIO</span><h2>Admin access</h2></div><button class="close" aria-label="Close">×</button></form><div id="loginPanel"><p class="muted">Sign in to create and manage birthday surprises.</p><label>Admin password<input id="adminPassword" type="password" placeholder="Enter admin password" autocomplete="current-password"></label><button class="btn btn-primary full" id="loginBtn" type="button">Sign in</button><p class="error" id="loginError"></p><small class="muted">Prototype login only. Secure Firebase authentication will be connected before public launch.</small></div><div id="editorPanel" hidden><div class="editor-top"><p class="muted">Create a birthday surprise</p><button class="text-btn" id="logoutBtn" type="button">Sign out</button></div><form id="inviteForm"><label>Birthday person's name<input name="name" required maxlength="45" placeholder="e.g. Mansi"></label><label>Birthday photo<input name="photo" id="birthdayPhoto" type="file" accept="image/*"></label><label>Personal birthday wish<textarea name="message" rows="4" maxlength="500" placeholder="Write something special..."></textarea></label><label>Theme<select name="theme"><option value="violet">Midnight Violet</option><option value="rose">Rose Gold</option><option value="champagne">Champagne Glow</option></select></label><label>Memory photos (optional)<input name="gallery" id="galleryPhotos" type="file" accept="image/*" multiple></label><label>Music link (optional)<input name="music" type="url" placeholder="Paste a music URL"></label><button class="btn btn-primary full" type="submit">Create Birthday Surprise ✦</button></form><p class="success" id="publishMessage"></p><div class="admin-list" id="adminList"></div></div></dialog>
+<dialog id="viewDialog" class="modal view-modal"><form method="dialog" class="modal-head"><div><span class="eyebrow">A PERSONAL CELEBRATION</span><h2>Birthday preview</h2></div><button class="close" aria-label="Close">×</button></form><div id="invitationView"></div><button class="btn btn-primary full" id="shareInvite" type="button">Share surprise ↗</button></dialog>
+<script src="./app.js"></script></body></html>
