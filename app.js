@@ -8,7 +8,7 @@ const firebaseConfig = {
   projectId: "everafter-779dd",
   storageBucket: "everafter-779dd.firebasestorage.app",
   messagingSenderId: "1021748697355",
-  appId: "1:102174869735:web:71102466d1d1f12dd16a0e",
+  appId: "1:1021748697355:web:71102466d1d1f12dd16a0e",
   measurementId: "G-CHSBDXB6FP"
 };
 
