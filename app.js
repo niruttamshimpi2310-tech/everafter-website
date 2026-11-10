@@ -76,26 +76,31 @@ async function renderAdmin(){
     document.querySelectorAll(".copy-invite").forEach(b=>b.onclick=()=>navigator.clipboard.writeText(location.origin+location.pathname+"?wish="+b.dataset.id));
   }catch(e){$("adminList").innerHTML='<p class="error">Could not load wishes. Check Firestore security rules.</p>'}
 }
-const pages=[["Welcome","A little magic, made just for you."],["Open Your Surprise","Ready to discover something special?"],["Birthday Star","Today, the spotlight belongs to you."],["Special Wishes","A heartfelt personal message."],["Memory Gallery","Favourite moments together."],["Celebration","Confetti, balloons and joy!"],["Birthday Music","A soundtrack for the moment."],["Final Surprise","A sweet ending to remember."]];
+const pages=[["Welcome","A little magic, made just for you.","✦"],["Open Your Surprise","Ready to discover something special?","🎁"],["Birthday Star","Their photo and birthday title.","📸"],["Special Wishes","A heartfelt personal message.","💌"],["Memory Gallery","Favourite moments together.","🖼️"],["Celebration","Confetti, balloons and joy!","🎉"],["Birthday Music","A soundtrack for the moment.","🎵"],["Cake Celebration","Make a wish and blow the candles.","🎂"],["Balloon Celebration","Colourful balloons floating all around.","🎈"],["Final Surprise","A sweet ending to remember.","♡"]];
 function renderInvite(item){
-  activeInvite=item;let page=0;
+  activeInvite=item;let page=-1;
   const render=()=>{
     const photo=item.photo?'<img class="surprise-photo" src="'+item.photo+'" alt="Birthday photo">':'<div class="photo-placeholder">🎂</div>';
     const gallery=(item.gallery||[]).map(src=>'<img class="gallery-photo" src="'+src+'" alt="Memory photo">').join("");
     let body="";
+    if(page===-1)body='<p class="eyebrow">CHOOSE YOUR MOMENT</p><h2>Your birthday journey</h2><p>Tap any card to open that special moment.</p><div class="section-menu">'+pages.map((p,i)=>'<button class="section-card" type="button" data-page="'+i+'"><span>'+p[2]+'</span><b>'+p[0]+'</b><small>'+p[1]+'</small></button>').join("")+'</div>';
     if(page===0)body='<div class="page-icon">✦</div><p class="eyebrow">A LITTLE MAGIC IS WAITING</p><h2>Something special is here for you.</h2><p>Made with love. Just for you.</p>';
-    if(page===1)body='<div class="page-icon">🎁</div><p class="eyebrow">YOUR SURPRISE IS READY</p><h2>Open Your Surprise</h2><p>Take a deep breath and get ready to smile.</p>';
+    if(page===1)body='<div class="page-icon">🎁</div><p class="eyebrow">YOUR SURPRISE IS READY</p><h2>Open Your Surprise</h2><p>Take a deep breath and get ready to smile.</p><button class="btn btn-primary" id="revealStar" type="button">Reveal the birthday star ✨</button>';
     if(page===2)body=photo+'<p class="eyebrow">TODAY\'S STAR</p><h2>Happy Birthday '+escapeHtml(item.name)+'! ❤️</h2>';
     if(page===3)body='<div class="page-icon">💌</div><p class="eyebrow">A NOTE FOR YOU</p><h2>Special Wishes</h2><p class="details">'+escapeHtml(item.message||"Wishing you happiness, love and beautiful memories today and always.")+'</p>';
     if(page===4)body='<p class="eyebrow">LITTLE MOMENTS, BIG MEMORIES</p><h2>Memory Gallery</h2><div class="memory-gallery">'+(gallery||photo)+'</div>';
-    if(page===5)body='<div class="page-icon">🎉</div><p class="eyebrow">LET\'S CELEBRATE</p><h2>Make a wish, '+escapeHtml(item.name)+'!</h2><div class="confetti-line">🎈 ✨ 🎊 🎉 ✨ 🎈</div><p>May your year sparkle with joy.</p>';
+    if(page===5)body='<div class="page-icon">🎉</div><p class="eyebrow">LET\'S CELEBRATE</p><h2>Make a wish, '+escapeHtml(item.name)+'!</h2><div class="confetti-line">✨ 🎊 🎉 ✨</div><p>May your year sparkle with joy.</p>';
     if(page===6)body='<div class="page-icon">🎵</div><p class="eyebrow">A SOUNDTRACK FOR YOU</p><h2>Birthday Music</h2><p>'+(item.music?'Music link added by the creator.':'Imagine your favourite birthday song playing just for you.')+'</p>'+(item.music?'<a class="btn btn-soft" href="'+escapeHtml(item.music)+'" target="_blank" rel="noopener">Open music ↗</a>':'');
-    if(page===7)body='<div class="page-icon">♡</div><p class="eyebrow">UNTIL THE NEXT BEAUTIFUL MOMENT</p><h2>You are one of a kind, '+escapeHtml(item.name)+'.</h2><p>Never stop shining. Happy Birthday! ✨</p>';
-    $("invitationView").innerHTML='<div class="journey-page theme-'+(item.theme||"violet")+'"><div class="journey-progress">'+pages.map((p,i)=>'<span class="'+(i<=page?'active':'')+'"></span>').join("")+'</div><small class="page-count">MOMENT '+(page+1)+' OF 8</small><div class="journey-content">'+body+'</div><div class="journey-controls">'+(page>0?'<button class="btn btn-soft" id="prevPage">← Back</button>':'<span></span>')+(page<7?'<button class="btn btn-primary" id="nextPage">'+(page===0?'Continue':page===1?'Open Your Surprise':'Next')+' →</button>':'<button class="btn btn-primary" id="finishPage">Start again ↻</button>')+'</div></div>';
+    if(page===7)body='<p class="eyebrow">MAKE A WISH</p><h2>Birthday Cake</h2><div class="cake-scene"><div class="cake-topper"><span class="cake-candle"><i class="candle-flame"></i></span><span class="cake-candle"><i class="candle-flame"></i></span><span class="cake-candle"><i class="candle-flame"></i></span><span class="cake-candle"><i class="candle-flame"></i></span><span class="cake-candle"><i class="candle-flame"></i></span></div><div class="cake-emoji">🎂</div></div><p>Close your eyes, make a wish and blow out all five candles!</p><button class="btn btn-primary" id="blowCandles" type="button">Blow the candles ✨</button><p id="cakeWish" class="cake-wish"></p>';
+    if(page===8)body='<p class="eyebrow">A SKY FULL OF WISHES</p><h2>Balloon Celebration</h2><p>Colourful wishes are floating all around for '+escapeHtml(item.name)+'!</p><div class="balloon-field" aria-label="Floating balloons">'+Array.from({length:14},(_,i)=>'<span class="float-balloon balloon-'+i+'">🎈</span>').join("")+'</div><p>May your dreams rise higher every day. ❤️</p>';
+    if(page===9)body='<div class="page-icon">♡</div><p class="eyebrow">UNTIL THE NEXT BEAUTIFUL MOMENT</p><h2>You are one of a kind, '+escapeHtml(item.name)+'.</h2><p>Never stop shining. Happy Birthday! ✨</p>';
+    const menu=page===-1;
+    $("invitationView").innerHTML='<div class="journey-page theme-'+(item.theme||"violet")+'">'+(menu?'':'<small class="page-count">EVERAFTER MOMENT '+(page+1)+' OF 10</small>')+'<div class="journey-content '+(menu?'menu-content':'')+'">'+body+'</div>'+(menu?'':'<div class="journey-controls"><button class="btn btn-soft" id="allSections" type="button">☷ All Sections</button></div>')+'</div>';
     if(!$("viewDialog").open)$("viewDialog").showModal();
-    if($("nextPage"))$("nextPage").onclick=()=>{page++;render()};
-    if($("prevPage"))$("prevPage").onclick=()=>{page--;render()};
-    if($("finishPage"))$("finishPage").onclick=()=>{page=0;render()};
+    document.querySelectorAll(".section-card").forEach(b=>b.onclick=()=>{page=Number(b.dataset.page);render()});
+    if($("allSections"))$("allSections").onclick=()=>{page=-1;render()};
+    if($("revealStar"))$("revealStar").onclick=()=>{page=2;render()};
+    if($("blowCandles"))$("blowCandles").onclick=()=>{document.querySelectorAll(".candle-flame").forEach(x=>x.classList.add("blown"));$("cakeWish").textContent="Wish sent into the universe! Happy Birthday! ❤️";$("blowCandles").textContent="Candles blown ✓";$("blowCandles").disabled=true};
   };render();
 }
 async function loadInvite(id){
